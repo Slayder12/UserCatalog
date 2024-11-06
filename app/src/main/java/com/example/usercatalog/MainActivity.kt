@@ -3,7 +3,6 @@ package com.example.usercatalog
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
@@ -45,20 +44,22 @@ class MainActivity : AppCompatActivity() {
             nameET.text.clear()
             ageET.text.clear()
             adapter.notifyDataSetChanged()
-            Toast.makeText(this, "Пользователь ${user.name} добавлен", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.user_add_text, user.name), Toast.LENGTH_SHORT).show()
+        }
+
+        nameET.setOnClickListener{
+            nameET.text.clear()
+        }
+
+        ageET.setOnClickListener{
+            ageET.text.clear()
         }
 
         listViewLV.onItemClickListener =
-            AdapterView.OnItemClickListener{
-                    _, _, position, _ ->
-
-                Toast.makeText(this, "Пользователь ${userData[position].name} удален", Toast.LENGTH_SHORT).show()
-                val user = adapter.getItem(position)
-                adapter.remove(user)
-
-            }
+            MyDialog.createDialog(this, adapter)
 
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
@@ -66,7 +67,7 @@ class MainActivity : AppCompatActivity() {
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.exitMenuMain) {
-            Toast.makeText(this, "Вы вышли из приложения", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.logged_text), Toast.LENGTH_SHORT).show()
             finish()
         }
         return super.onOptionsItemSelected(item)
@@ -75,15 +76,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun userInputValidation(user: User): Boolean {
         if (user.name.isEmpty() || user.age.toString().isEmpty() || user.age == 0) {
-            Toast.makeText(this, "Необходимо заполнить все поля", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.filled_in_text), Toast.LENGTH_SHORT).show()
             return false
         }
         if (user.name.length !in 2..32) {
-            Toast.makeText(this, "Имя должно быть от 2 до 32 символов", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.valid_name_text), Toast.LENGTH_SHORT).show()
             return false
         }
         if (user.age !in 1..120) {
-            Toast.makeText(this, "Возраст должен быть от 1 до 120 лет", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.valid_age_text), Toast.LENGTH_SHORT).show()
             return false
         }
         return true

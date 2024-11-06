@@ -14,9 +14,21 @@
    Для удобства работы необходимо создать класс **User** с конструктором, в котором содержатся свойства имени и возраста. Обратите внимание на то, что список, в котором будут хранится пользователи будет типа **User**.
 
 Screenshots:
-![](https://github.com/Slayder12/UserCatalog/blob/main/assets/1.png)
-![](https://github.com/Slayder12/UserCatalog/blob/main/assets/2.png)
-![](https://github.com/Slayder12/UserCatalog/blob/main/assets/3.png)
-![](https://github.com/Slayder12/UserCatalog/blob/main/assets/4.png)
-![](https://github.com/Slayder12/UserCatalog/blob/main/assets/5.png)
-![](https://github.com/Slayder12/UserCatalog/blob/main/assets/6.png)
+![](https://github.com/Slayder12/UserCatalog/blob/main/assets/1-1.png)
+![](https://github.com/Slayder12/UserCatalog/blob/main/assets/1-2.png)
+![](https://github.com/Slayder12/UserCatalog/blob/main/assets/1-3.png)
+![](https://github.com/Slayder12/UserCatalog/blob/main/assets/1-4.png)
+![](https://github.com/Slayder12/UserCatalog/blob/main/assets/1-5.png)
+![](https://github.com/Slayder12/UserCatalog/blob/main/assets/1-6.png)
+
+**Доработка.**
+
+Доработать приложение по удалению пользователей путем вызова диалогового окна при нажатии на элемент списка.
+В дополнении к логике приложения необходимо создать:
+1. Класс MyDialog, в котором создается диалоговое окно.
+В нем предложить пользователю подтверждение действия по удалению. В диалоговом окне содержатся две кнопки «Да» - подтверждение удаления «Нет» - отмена действия и закрытие диалогового окна.
+2. Закрытие приложения выполнить через создание меню и одного пункта «Exit». По нажатию на него, происходит завершение работы приложения.
+
+Screenshots:
+![](https://github.com/Slayder12/UserCatalog/blob/main/assets/2-1.png)
+![](https://github.com/Slayder12/UserCatalog/blob/main/assets/2-2.png)
