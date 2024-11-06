@@ -1,30 +1,38 @@
 package com.example.usercatalog
 
+import android.app.Dialog
 import android.content.Context
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
+import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.DialogFragment
 
-class MyDialog {
-    companion object {
-        fun createDialog(context: Context, adapter: ArrayAdapter<User>) =
-            AdapterView.OnItemClickListener { _, _, position, _ ->
+class MyDialog: DialogFragment() {
+    private var removable: Removable? = null
 
-                val builder = AlertDialog.Builder(context)
-                builder.setTitle(context.getString(R.string.confirm_deletion_text))
-                    .setMessage(context.getString(R.string.remove_text))
-                    .setCancelable(true)
-                    .setNegativeButton(context.getString(R.string.yes_text)) { dialog, witch ->
-                        dialog.cancel()
-                    }
-                    .setPositiveButton(context.getString(R.string.no_text)) { dialog, witch ->
-                        val user = adapter.getItem(position)
-                        adapter.remove(user)
-                        Toast.makeText(context,
-                            context.getString(R.string.user_text, user), Toast.LENGTH_SHORT).show()
-                    }.create().show()
-            }
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        removable = context as Removable?
 
     }
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val user = arguments?.get("user") as? User
+        val builder = AlertDialog.Builder(
+            requireActivity()
+        )
+
+        return builder.setTitle(getString(R.string.confirm_deletion_text))
+            .setMessage(getString(R.string.remove_user_text, user))
+            .setIcon(R.drawable.ic_delete)
+            .setCancelable(true)
+            .setPositiveButton(getString(R.string.yes_text)) { dialog, witch ->
+                removable?.remove(user)
+                Toast.makeText(context, getString(R.string.user_deleted_text, user), Toast.LENGTH_SHORT).show()
+            }
+            .setNegativeButton(getString(R.string.no_text)) { dialog, witch -> }
+                .create()
+
+    }
+
 }
