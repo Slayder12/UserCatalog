@@ -1,11 +1,9 @@
 package com.example.usercatalog
 
-import java.io.Serializable
-
-class User(val name: String, val age: Int): Serializable {
+class User(val name: String, val age: Int) {
 
     override fun toString(): String {
-        return "$name, Возраст: $age"
+        return "$name', Возраст: $age"
     }
 
 }

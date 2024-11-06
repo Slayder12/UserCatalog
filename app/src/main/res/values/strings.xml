@@ -8,13 +8,13 @@
     <string name="input_age_text">Введите возраст</string>
     <string name="save_text">Сохранить</string>
     <string name="confirm_deletion_text">Подтвердите удаление!</string>
-    <string name="yes_text">Да</string>
-    <string name="no_text">Нет</string>
-    <string name="user_deleted_text">Пользователь %1$s удален</string>
+    <string name="remove_text">Уверены что хотите удалить?</string>
+    <string name="yes_text">Нет</string>
+    <string name="no_text">Да</string>
+    <string name="user_text">Пользователь %1$s удален</string>
     <string name="logged_text">Вы вышли из приложения</string>
     <string name="filled_in_text">Необходимо заполнить все поля</string>
     <string name="valid_name_text">Имя должно быть от 2 до 32 символов</string>
     <string name="valid_age_text">Возраст должен быть от 1 до 120 лет</string>
     <string name="user_add_text">Пользователь %1$s добавлен</string>
-    <string name="remove_user_text">Хотите удалить пользователя %1$s?</string>
 </resources>

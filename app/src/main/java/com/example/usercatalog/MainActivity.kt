@@ -3,7 +3,6 @@ package com.example.usercatalog
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
@@ -12,10 +11,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 
-class MainActivity : AppCompatActivity(), Removable {
+class MainActivity : AppCompatActivity() {
 
     private val userData: MutableList<User> = mutableListOf()
-    private var adapter: ArrayAdapter<User>? = null
 
     private lateinit var toolbarMain: Toolbar
     private lateinit var listViewLV: ListView
@@ -35,7 +33,7 @@ class MainActivity : AppCompatActivity(), Removable {
         title = ""
         setSupportActionBar(toolbarMain)
 
-        adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, userData)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, userData)
         listViewLV.adapter = adapter
 
 
@@ -45,7 +43,7 @@ class MainActivity : AppCompatActivity(), Removable {
             userData.add(user)
             nameET.text.clear()
             ageET.text.clear()
-            adapter!!.notifyDataSetChanged()
+            adapter.notifyDataSetChanged()
             Toast.makeText(this, getString(R.string.user_add_text, user.name), Toast.LENGTH_SHORT).show()
         }
 
@@ -58,16 +56,8 @@ class MainActivity : AppCompatActivity(), Removable {
         }
 
         listViewLV.onItemClickListener =
-            AdapterView.OnItemClickListener { _, _, position, _ ->
+            MyDialog.createDialog(this, adapter)
 
-                val userPosition = adapter!!.getItem(position)
-                val dialog = MyDialog()
-                val args = Bundle()
-                args.putSerializable("user", userPosition)
-                dialog.arguments = args
-                dialog.show(supportFragmentManager, "custom")
-
-            }
     }
 
 
@@ -98,10 +88,6 @@ class MainActivity : AppCompatActivity(), Removable {
             return false
         }
         return true
-    }
-
-    override fun remove(user: User?) {
-        adapter?.remove(user)
     }
 
 }
