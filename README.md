@@ -34,4 +34,4 @@ Screenshots:
 ![](https://github.com/Slayder12/UserCatalog/blob/main/assets/2-1.png)
 ![](https://github.com/Slayder12/UserCatalog/blob/main/assets/2-2.png)
 Вариант №2 (branch: variant2)
-![](https://github.com/Slayder12/UserCatalog/blob/main/assets/3-1.png)
+![](https://github.com/Slayder12/UserCatalog/blob/variant2/assets/3-1.png)
