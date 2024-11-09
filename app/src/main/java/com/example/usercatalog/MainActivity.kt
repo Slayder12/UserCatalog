@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity(), Removable {
 
         saveBTN.setOnClickListener {
             val user = User(nameET.text.toString(), ageET.text.toString().toIntOrNull() ?: 0)
-            if (!userInputValidation(user)) return@setOnClickListener
+            if (!UserInputValidation(this, user).isValid()) return@setOnClickListener
             userData.add(user)
             nameET.text.clear()
             ageET.text.clear()
@@ -84,21 +84,6 @@ class MainActivity : AppCompatActivity(), Removable {
 
     }
 
-    private fun userInputValidation(user: User): Boolean {
-        if (user.name.isEmpty() || user.age.toString().isEmpty() || user.age == 0) {
-            Toast.makeText(this, getString(R.string.filled_in_text), Toast.LENGTH_SHORT).show()
-            return false
-        }
-        if (user.name.length !in 2..32) {
-            Toast.makeText(this, getString(R.string.valid_name_text), Toast.LENGTH_SHORT).show()
-            return false
-        }
-        if (user.age !in 1..120) {
-            Toast.makeText(this, getString(R.string.valid_age_text), Toast.LENGTH_SHORT).show()
-            return false
-        }
-        return true
-    }
 
     override fun remove(user: User?) {
         adapter?.remove(user)
