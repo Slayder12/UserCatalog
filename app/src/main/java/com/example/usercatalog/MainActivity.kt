@@ -11,11 +11,14 @@ import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 
 class MainActivity : AppCompatActivity(), Removable {
 
     private val userData: MutableList<User> = mutableListOf()
     private var adapter: ArrayAdapter<User>? = null
+    private lateinit var userLiveData: UserViewModel
 
     private lateinit var toolbarMain: Toolbar
     private lateinit var listViewLV: ListView
@@ -26,6 +29,7 @@ class MainActivity : AppCompatActivity(), Removable {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        userLiveData = ViewModelProvider(this)[UserViewModel::class.java]
 
         nameET = findViewById(R.id.nameET)
         ageET = findViewById(R.id.ageET)
@@ -38,28 +42,30 @@ class MainActivity : AppCompatActivity(), Removable {
         adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, userData)
         listViewLV.adapter = adapter
 
+        userLiveData.userLiveData.observe(this, Observer { users ->
+            adapter?.clear()
+            adapter?.addAll(users)
+            adapter?.notifyDataSetChanged()
+        })
 
         saveBTN.setOnClickListener {
             val user = User(nameET.text.toString(), ageET.text.toString().toIntOrNull() ?: 0)
             if (!UserInputValidation(this, user).isValid()) return@setOnClickListener
-            userData.add(user)
+
+            val currentList = userLiveData.userLiveData.value ?: mutableListOf()
+            currentList.add(user)
+            userLiveData.userLiveData.value = currentList
+
             nameET.text.clear()
             ageET.text.clear()
-            adapter!!.notifyDataSetChanged()
+
             Toast.makeText(this, getString(R.string.user_add_text, user.name), Toast.LENGTH_SHORT).show()
         }
 
-        nameET.setOnClickListener{
-            nameET.text.clear()
-        }
-
-        ageET.setOnClickListener{
-            ageET.text.clear()
-        }
+        ClearTextOnClick(nameET, ageET).clear()
 
         listViewLV.onItemClickListener =
             AdapterView.OnItemClickListener { _, _, position, _ ->
-
                 val userPosition = adapter!!.getItem(position)
                 val dialog = MyDialog()
                 val args = Bundle()
@@ -70,11 +76,11 @@ class MainActivity : AppCompatActivity(), Removable {
             }
     }
 
-
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.exitMenuMain) {
             Toast.makeText(this, getString(R.string.logged_text), Toast.LENGTH_SHORT).show()
@@ -84,9 +90,10 @@ class MainActivity : AppCompatActivity(), Removable {
 
     }
 
-
     override fun remove(user: User?) {
-        adapter?.remove(user)
-    }
+        val currentList = userLiveData.userLiveData.value ?: mutableListOf()
+        currentList.remove(user)
+        userLiveData.userLiveData.value = currentList
 
+    }
 }

@@ -1,6 +1,7 @@
 package com.example.usercatalog
 
 import android.content.Context
+import android.widget.EditText
 import android.widget.Toast
 import java.io.Serializable
 
@@ -28,8 +29,17 @@ class UserInputValidation(private val context: Context, private val user: User){
         }
         return true
     }
+}
 
-
+class ClearTextOnClick(val nameET: EditText, val ageET: EditText) {
+    fun clear() {
+        nameET.setOnClickListener{
+            nameET.text.clear()
+        }
+        ageET.setOnClickListener{
+            ageET.text.clear()
+        }
+    }
 }
 
 

@@ -26,11 +26,11 @@ class MyDialog: DialogFragment() {
             .setMessage(getString(R.string.remove_user_text, user))
             .setIcon(R.drawable.ic_delete)
             .setCancelable(true)
-            .setPositiveButton(getString(R.string.yes_text)) { dialog, witch ->
+            .setPositiveButton(getString(R.string.yes_text)) { _, _ ->
                 removable?.remove(user)
                 Toast.makeText(context, getString(R.string.user_deleted_text, user), Toast.LENGTH_SHORT).show()
             }
-            .setNegativeButton(getString(R.string.no_text)) { dialog, witch -> }
+            .setNegativeButton(getString(R.string.no_text)) { _, _ -> }
                 .create()
 
     }
