@@ -55,11 +55,11 @@ Update:
 Приложение необходимо сохранить проектом в удаленном репозитории, для проверки качества предоставить ссылку преподавателю, либо сделать скрины эмулятора при каждом шаге работы приложения.
 
 Screenshots: 
-![](https://github.com/Slayder12/UserCatalog/blob/variant2/assets/4-1.png)
-![](https://github.com/Slayder12/UserCatalog/blob/variant2/assets/4-2.png)
-![](https://github.com/Slayder12/UserCatalog/blob/variant2/assets/4-3.png)
-![](https://github.com/Slayder12/UserCatalog/blob/variant2/assets/4-4.png)
-![](https://github.com/Slayder12/UserCatalog/blob/variant2/assets/4-5.png)
-![](https://github.com/Slayder12/UserCatalog/blob/variant2/assets/4-6.png)
-![](https://github.com/Slayder12/UserCatalog/blob/variant2/assets/4-7.png)
-![](https://github.com/Slayder12/UserCatalog/blob/variant2/assets/4-8.png)
+![](https://github.com/Slayder12/UserCatalog/blob/main/assets/4-1.png)
+![](https://github.com/Slayder12/UserCatalog/blob/main/assets/4-2.png)
+![](https://github.com/Slayder12/UserCatalog/blob/main/assets/4-3.png)
+![](https://github.com/Slayder12/UserCatalog/blob/main/assets/4-4.png)
+![](https://github.com/Slayder12/UserCatalog/blob/main/assets/4-5.png)
+![](https://github.com/Slayder12/UserCatalog/blob/main/assets/4-6.png)
+![](https://github.com/Slayder12/UserCatalog/blob/main/assets/4-7.png)
+![](https://github.com/Slayder12/UserCatalog/blob/main/assets/4-8.png)
